@@ -6,9 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // --- 1. CHAT LABEL AUTOMATION ---
     const chatLabel = document.getElementById('chatLabel');
-    
     if (chatLabel) {
-        // পেজ লোড হওয়ার ৩ সেকেন্ড পর প্রথমবার লেবেল আসবে
         setTimeout(() => {
             startLabelLoop(chatLabel);
         }, 3000); 
@@ -16,31 +14,82 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- 2. BANNER SLIDESHOW INIT ---
     initSlideshow();
+
+    // --- 3. SMOOTH SCROLL WITH FIXED OFFSET ---
+    initSmoothScroll();
 });
 
 
 /* =========================================
-   FUNCTION: CHAT LABEL LOOP (Updated)
+   FUNCTION: SMOOTH SCROLL (ONLY 40PX OFFSET)
+   ========================================= */
+function initSmoothScroll() {
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+
+            // 1. General Anchor Links (#about, #contact, etc.)
+            if (href.length > 1) {
+                const targetElement = document.getElementById(href.substring(1));
+
+                if (targetElement) {
+                    e.preventDefault();
+
+                    // বর্তমান পজিশন বের করা
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    
+                    // Logic: Element Top + Current Scroll - 40px (Fixed Offset)
+                    // হেডারের হাইট বাদ দেওয়া হয়নি, শুধু ৪০ পিক্সেল গ্যাপ রাখা হয়েছে
+                    const offsetPosition = elementPosition + window.scrollY - 40;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+
+                    // মোবাইল মেনু বন্ধ করা
+                    closeMobileMenu();
+                }
+            } 
+            // 2. Back To Top / Home Link (#home)
+            else if (href === '#home' || href === '#') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // মোবাইল মেনু বন্ধ করা
+                closeMobileMenu();
+            }
+        });
+    });
+}
+
+// Helper function to close menu
+function closeMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const overlay = document.querySelector('.overlay');
+    if (menu && menu.classList.contains('active')) {
+        menu.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
+    }
+}
+
+
+/* =========================================
+   FUNCTION: CHAT LABEL LOOP
    ========================================= */
 function startLabelLoop(label) {
     showLabel(label);
 }
 
 function showLabel(label) {
-    // ১. লেবেল বের হবে (Show)
     label.classList.add('show-label');
-    
-    // ২. ৫ সেকেন্ড পর লেবেল বাটনের ভেতর ঢুকে যাবে (Hide)
-    // [UPDATE: আগে ২০ সেকেন্ড ছিল, এখন ৫ সেকেন্ড করা হয়েছে]
     setTimeout(() => {
         label.classList.remove('show-label');
-        
-        // ৩. ৩০ সেকেন্ড অপেক্ষা করে আবার বের হবে (Loop)
-        // [UPDATE: আগে ৫ সেকেন্ড ছিল, এখন ৩০ সেকেন্ড করা হয়েছে]
         setTimeout(() => {
-            showLabel(label); // আবার ফাংশনটি কল হবে
+            showLabel(label); 
         }, 30000); 
-        
     }, 5000); 
 }
 
@@ -58,13 +107,11 @@ function toggleChat() {
     options.classList.toggle('open');
     
     if (options.classList.contains('open')) {
-        // Open State
         icon.classList.remove('fa-comments');
         icon.classList.add('fa-xmark');
         btn.style.animation = 'none'; 
         btn.style.transform = "rotate(90deg)"; 
     } else {
-        // Close State
         icon.classList.remove('fa-xmark');
         icon.classList.add('fa-comments');
         btn.style.animation = 'pulse 2s infinite'; 
@@ -113,7 +160,6 @@ function toggleMenu() {
     }
 }
 
-// Mobile Submenu Toggle
 function toggleMobileSubmenu(icon) {
     const submenu = icon.parentElement.nextElementSibling;
     

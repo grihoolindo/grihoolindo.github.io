@@ -9,7 +9,7 @@
     --wood-light-bg: #fdf6ec;
     --text-gray: #555;
     --bg-white: #ffffff;
-    --bg-off-white: #f9f9f9;
+    --bg-off-white: #eeeeee;
     --border-color: #e5e5e5;
     --container-width: 1350px;
     --smooth-transition: all 0.4s ease;
@@ -102,7 +102,7 @@ img {
 
 .section-subtitle {
     color: var(--text-gray);
-        margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .title-bottom-space {
@@ -304,11 +304,16 @@ header.header-shrink .logo-text {
 }
 
 .offcanvas-header {
-    padding: 25px;
+    padding: 20px 25px;
     border-bottom: 1px solid #e5e5e5;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.offcanvas-header .logo img {
+    width: 100px;
+    height: auto;
 }
 
 .offcanvas-body {
@@ -320,10 +325,11 @@ header.header-shrink .logo-text {
     padding: 25px;
 }
 
-.offcanvas-body ul li {
-    margin-bottom: 15px;
-    border-bottom: 1px solid #f1f1f1;
-    padding-bottom: 10px;
+.offcanvas-body ul li a {
+    margin-bottom: 12px !important;
+    border-bottom: 1px solid #f1f1f1 !important;
+    padding-bottom: 10px !important;
+    display: block;
 }
 
 .mobile-link-row {
@@ -354,7 +360,7 @@ header.header-shrink .logo-text {
     display: none;
     padding-left: 20px;
     padding-top: 10px;
-    list-style: circle;
+    list-style: none;
     background: #f9f9f9;
     border-radius: 5px;
     margin-top: 5px;
@@ -493,7 +499,7 @@ header.header-shrink .logo-text {
 .banner-btn {
     display: inline-block;
     margin-top: 45px;
-    padding: 12px 30px;
+    padding: 10px 20px;
     background-color: #956737;
     color: white;
     font-weight: 600;
@@ -824,11 +830,15 @@ header.header-shrink .logo-text {
 /* =========================================
    6. ABOUT US & WHY US
    ========================================= */
+
+section#about {
+    overflow: hidden;
+}
+
 .creative-about-wrapper {
     display: flex;
     align-items: center;
     gap: 50px;
-    max-width: 1000px;
     margin: 0 auto;
     position: relative;
 }
@@ -853,17 +863,9 @@ header.header-shrink .logo-text {
 }
 
 .about-text-side h3 {
-    font-size: 36px;
+    font-size: 18px;
     line-height: 1.2;
     margin-bottom: 20px;
-}
-
-.divider-line {
-    width: 80px;
-    height: 5px;
-    background: var(--wood-color);
-    margin-bottom: 25px;
-    border-radius: 10px;
 }
 
 .about-text-side p {
@@ -876,7 +878,7 @@ header.header-shrink .logo-text {
 .floating-badge {
     position: absolute;
     bottom: 30px;
-    left: -30px;
+    right: -30px;
     background: white;
     padding: 15px 25px;
     border-radius: 10px;
@@ -909,27 +911,6 @@ header.header-shrink .logo-text {
     100% {
         transform: translateY(0px);
     }
-}
-
-/* Tags */
-.product-tags {
-    margin-top: 25px;
-}
-
-.product-tags span {
-    display: inline-block;
-    background: #eee;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    margin: 0 5px 5px 0;
-    color: #555;
-    transition: 0.3s;
-}
-
-.product-tags span:hover {
-    background: var(--wood-color);
-    color: white;
 }
 
 /* Why Us Grid */
@@ -992,7 +973,7 @@ header.header-shrink .logo-text {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
     width: 80%;
 }
 
@@ -1036,7 +1017,7 @@ header.header-shrink .logo-text {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    margin-bottom: 60px;
+    /* margin-bottom: 60px; */
 }
 
 .c-card {
@@ -1045,6 +1026,7 @@ header.header-shrink .logo-text {
     border-radius: 8px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     transition: 0.3s;
+        margin-top: 10px;
 }
 
 .c-card:hover {
@@ -1069,16 +1051,6 @@ header.header-shrink .logo-text {
     line-height: 1.6;
 }
 
-.address-link {
-    color: inherit;
-    transition: 0.3s;
-}
-
-.address-link:hover {
-    color: var(--wood-color);
-    text-decoration: underline;
-}
-
 .dark-hook-box {
     background: #151515;
     color: white;
@@ -1089,25 +1061,34 @@ header.header-shrink .logo-text {
 .social-links-big {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 6px;
     margin-top: 20px;
 }
 
 .social-links-big a {
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    background: #f4f4f4;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     transition: 0.3s;
+
 }
 
 .social-links-big a:hover {
-    background: var(--wood-color);
-    transform: scale(1.1);
+    background: #1a1a1a;
+}
+
+.social-links-big a i {
+    font-size: 18px;
+    margin: 0;
+    color: #1a1a1a !important;
+}
+
+.social-links-big a:hover i {
+    color: white !important;
 }
 
 /* =========================================
@@ -1971,8 +1952,8 @@ blockquote {
     }
 
     .creative-about-wrapper {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: column-reverse;
+            gap: 30px;
     }
 
     .about-image-side {
@@ -1982,7 +1963,6 @@ blockquote {
     .about-text-side {
         order: 2;
         padding-left: 0;
-        margin-top: 30px;
     }
 
     .banner-content h1,
@@ -2043,7 +2023,7 @@ blockquote {
 @media (max-width: 768px) {
 
     .container {
-        padding: 0 10px;
+        padding: 0 15px;
         max-width: 100%;
     }
 
@@ -2075,7 +2055,7 @@ blockquote {
     }
 
     .section-title {
-        font-size: 22px;
+        font-size: 24px;
         margin-bottom: 0;
     }
 
@@ -2093,7 +2073,7 @@ blockquote {
     }
 
     .section-padding {
-        padding: 75px 0;
+        padding: 70px 0;
     }
 
     .product-container {
@@ -2107,7 +2087,7 @@ blockquote {
     }
 
     .product-container.list-view .card-img-wrap {
-        width: 120px;
+        width: 150px;
         aspect-ratio: 1/1;
     }
 
@@ -2121,12 +2101,13 @@ blockquote {
 
     .contact-cards-grid {
         grid-template-columns: 1fr;
+            gap: 15px;
     }
 
     /* Process Grid Mobile: 3 items per row with arrows */
     .process-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
+        gap: 12px;
     }
 
     .p-icon {
@@ -2239,15 +2220,53 @@ blockquote {
         font-size: 18px;
     }
 
-        .process-grid {
+    .process-grid {
         width: 90%;
         gap: 30px 15px;
     }
+
+    .short-desc {
+    font-size: 12px;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+.product-container.list-view .card-info {
+    width: calc(100% - 150px);
+    padding: 15px;
+}
+
+.price-box {
+    margin-bottom: 8px;
+}
+
+.floating-badge {
+    right: -20px;
+    padding: 10px 14px;
+    border-radius: 10px;
+}
+
+.floating-badge span {
+    font-size: 14px;
+}
+
+.floating-badge i {
+    font-size: 20px;
+}
+
+
 }
 
 
 
 @media (max-width: 499px) {
+
+    header.header-shrink .navbar {
+        height: 60px;
+    }
+
+    .header-shrink .logo-text a img {
+        width: 106px;
+    }
 
     .banner-content h1,
     .banner-content h2 {
@@ -2305,6 +2324,31 @@ blockquote {
 
     .banner-content h1,
     .banner-content h2 {
-        font-size: 18px;
+        font-size: 23px;
+    }
+
+    .card-info {
+        padding: 13px;
+    }
+
+    .details-btn {
+        padding: 5px 0;
+        font-size: 13px;
+    }
+
+    .product-card {
+        border: 1px solid #95673747;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+    .offer-price {
+    font-size: 16px;
+}
+
+}
+
+
+@media (max-width: 420px) {
+    .slide img {
+        object-position: -38px center !important;
     }
 }
